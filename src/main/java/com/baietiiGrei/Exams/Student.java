@@ -1,17 +1,24 @@
 package com.baietiiGrei.Exams;
 
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.OnDelete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.GeneratedValue;
+import java.util.Objects;
+
 public class Student {
-    private int id;
+    private @Id @GeneratedValue Long id;
     private String name;
     private String email;
     private int study_year;
     private String section;
 
+    private Student() {}
 
-    public Student(int id, String name, String email, int study_year, String section) {
+    public Student(Long id, String name, String email, int study_year, String section) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -19,12 +26,39 @@ public class Student {
         this.section = section;
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(this==o){return true;}
+        if(o==null || getClass()!=o.getClass()){return false;}
+        Student student = (Student) o;
+        return Objects.equals(id,student.id) &&
+                Objects.equals(name,student.name) &&
+                Objects.equals(email,student.email) &&
+                Objects.equals(study_year,student.study_year) &&
+                Objects.equals(section,student.section);
+    }
 
-    public int getId() {
+    @Override
+    public int hashCode(){
+        return Objects.hash(id,name,email,study_year,section);
+    }
+
+    @Override
+    public String toString(){
+        return "Student{"+
+                "id="+id+
+                ", name='"+name+'\''+
+                ", email='"+email+'\''+
+                ", study_year='"+study_year+'\''+
+                ", section='"+section+'\''+
+                '}';
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
