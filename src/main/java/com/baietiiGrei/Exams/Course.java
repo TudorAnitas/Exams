@@ -2,26 +2,51 @@ package com.baietiiGrei.Exams;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Course {
-    private int id;
+    private @Id @GeneratedValue Long id;
     private String name;
     private int credits;
-    private int professor_id;
-
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name="FK_PROFESSOR_ID"))
+    private Professor professor_id;
 
     public Course() {}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return credits == course.credits &&
+                professor_id == course.professor_id &&
+                Objects.equals(id, course.id) &&
+                Objects.equals(name, course.name);
+    }
 
-    @Id
-    public int getId() {
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, credits, professor_id);
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", credits=" + credits +
+                ", professor_id=" + professor_id +
+                '}';
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -33,11 +58,11 @@ public class Course {
         this.name = name;
     }
 
-    public int getProfessor_id() {
+    public Professor getProfessor_id() {
         return professor_id;
     }
 
-    public void setProfessor_id(int professor_id) {
+    public void setProfessor_id(Professor professor_id) {
         this.professor_id = professor_id;
     }
 

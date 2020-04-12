@@ -1,7 +1,5 @@
 package com.baietiiGrei.Exams;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

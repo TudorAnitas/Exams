@@ -16,14 +16,6 @@ public class AppController {
     public String welcome(){
         return "index2.jsp";
     }
-    @RequestMapping("/exams")
-    public String exams(Model model){
-        Scheduler scheduler = new Scheduler();
-        List<Exam> examList = scheduler.getExamList();
-
-        model.addAttribute("exams",examList);
-        return "exams";
-    }
     @RequestMapping("/home")
     public String home(){
         System.out.println("home is working");
