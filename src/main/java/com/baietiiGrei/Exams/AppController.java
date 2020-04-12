@@ -22,7 +22,7 @@ public class AppController {
         List<Exam> examList = scheduler.getExamList();
 
         model.addAttribute("exams",examList);
-        return "exams";
+        return "webapp";
     }
     @RequestMapping("/home")
     public String home(){
