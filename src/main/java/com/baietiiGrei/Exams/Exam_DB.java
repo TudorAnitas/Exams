@@ -1,29 +1,25 @@
 package com.baietiiGrei.Exams;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Exam_DB {
-    private int id;
-    private String academic_year;
-    private String session_type;
-    private int study_year;
-    private String section;
-    private int capacity;
-    private int course_id;
-    private int professor_id;
-    private int student_id;
+        private int id;
+        private String academic_year;
+        private String session_type;
+        private int study_year;
+        private String section;
+        private int capacity;
+        private Professor professor;
+        private Student student;
 
+    public Exam_DB() {}
 
-    public Exam_DB(int id, String academic_year, String session_type, int study_year, String section, int capacity, int course_id, int professor_id, int student_id) {
-        this.id = id;
-        this.academic_year = academic_year;
-        this.session_type = session_type;
-        this.study_year = study_year;
-        this.section = section;
-        this.capacity = capacity;
-        this.course_id = course_id;
-        this.professor_id = professor_id;
-        this.student_id = student_id;
-    }
-
+    @Id
     public int getId() {
         return id;
     }
@@ -70,29 +66,5 @@ public class Exam_DB {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    public int getCourse_id() {
-        return course_id;
-    }
-
-    public void setCourse_id(int course_id) {
-        this.course_id = course_id;
-    }
-
-    public int getProfessor_id() {
-        return professor_id;
-    }
-
-    public void setProfessor_id(int professor_id) {
-        this.professor_id = professor_id;
-    }
-
-    public int getStudent_id() {
-        return student_id;
-    }
-
-    public void setStudent_id(int student_id) {
-        this.student_id = student_id;
     }
 }

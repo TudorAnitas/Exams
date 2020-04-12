@@ -1,5 +1,11 @@
 package com.baietiiGrei.Exams;
 
+import org.springframework.stereotype.Component;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Course {
     private int id;
     private String name;
@@ -7,14 +13,10 @@ public class Course {
     private int professor_id;
 
 
-    public Course(int id, String name, int credits, int professor_id) {
-        this.id = id;
-        this.name = name;
-        this.credits = credits;
-        this.professor_id = professor_id;
-    }
+    public Course() {}
 
 
+    @Id
     public int getId() {
         return id;
     }

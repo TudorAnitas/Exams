@@ -1,17 +1,20 @@
 package com.baietiiGrei.Exams;
 
+import org.springframework.stereotype.Component;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Professor {
     private int id;
     private String name;
     private String email;
 
 
-    public Professor(int id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
+    public Professor(){}
 
+    @Id
     public int getId() {
         return id;
     }
