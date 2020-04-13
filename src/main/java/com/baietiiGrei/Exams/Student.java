@@ -1,12 +1,15 @@
 package com.baietiiGrei.Exams;
 
+import org.springframework.context.annotation.Bean;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
-public class Student {
+public class Student{
     private @Id @GeneratedValue Long id;
     private String name;
     private String email;
@@ -14,6 +17,14 @@ public class Student {
     private String section;
 
     public Student() {}
+
+    public Student(Long id, String name, String email, int study_year, String section) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.study_year = study_year;
+        this.section = section;
+    }
 
     @Override
     public boolean equals(Object o){
