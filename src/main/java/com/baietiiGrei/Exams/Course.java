@@ -1,20 +1,26 @@
 package com.baietiiGrei.Exams;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Course {
-    private @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long course_id;
     private String name;
     private int credits;
+
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name="FK_PROFESSOR_ID"))
-    private Professor professor_id;
+    @JoinColumn(name="professor_id")
+    private Professor professor;
 
     public Course() {}
+
+    public Course(Long course_id, String name, int credits, Professor professor) {
+        this.course_id = course_id;
+        this.name = name;
+        this.credits = credits;
+        this.professor = professor;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -22,32 +28,32 @@ public class Course {
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
         return credits == course.credits &&
-                professor_id == course.professor_id &&
-                Objects.equals(id, course.id) &&
+                professor == course.professor &&
+                Objects.equals(course_id, course.course_id) &&
                 Objects.equals(name, course.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, credits, professor_id);
+        return Objects.hash(course_id, name, credits, professor);
     }
 
     @Override
     public String toString() {
         return "Course{" +
-                "id=" + id +
+                "id=" + course_id +
                 ", name='" + name + '\'' +
                 ", credits=" + credits +
-                ", professor_id=" + professor_id +
+                ", professor_id=" + professor +
                 '}';
     }
 
-    public Long getId() {
-        return id;
+    public Long getCourse_id() {
+        return course_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCourse_id(Long id) {
+        this.course_id = id;
     }
 
     public String getName() {
@@ -58,12 +64,12 @@ public class Course {
         this.name = name;
     }
 
-    public Professor getProfessor_id() {
-        return professor_id;
+    public Professor getProfessor() {
+        return professor;
     }
 
-    public void setProfessor_id(Professor professor_id) {
-        this.professor_id = professor_id;
+    public void setProfessor(Professor professor_id) {
+        this.professor = professor_id;
     }
 
     public int getCredits() {

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ExamsApplication {
 
 	public static void main(String[] args) {
-		Student s;
 		SpringApplication.run(ExamsApplication.class, args);
 	}
 

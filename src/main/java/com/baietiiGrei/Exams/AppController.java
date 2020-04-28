@@ -1,33 +1,40 @@
 package com.baietiiGrei.Exams;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+
 
 import java.util.List;
 
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @RestController
 public class AppController {
 
-    private final StudentRepository repository;
+    private final ExamRepository repository;
 
-    AppController(StudentRepository repository) {
+    AppController(@Autowired ExamRepository repository) {
         this.repository = repository;
     }
 
-    // Aggregate root
-
-    @GetMapping("/employees")
-    List<Student> all() {
-        return (List<Student>) repository.findAll();
+    @GetMapping("/exams")
+    public List<Exam> all(@RequestParam(name = "id") Long id) {
+        return (List<Exam>) repository.findAll();
     }
 
-    @PostMapping("/employees")
-    Student newEmployee(@RequestBody Student newEmployee) {
-        return repository.save(newEmployee);
+    @PostMapping("/exams")
+    public ResponseEntity<Exam> newStudent(@RequestBody Exam exam) {
+        return ResponseEntity.ok(repository.save(exam));
+    }
+
+    @PutMapping("/exams")
+    public ResponseEntity<String> updateExam(@RequestBody Exam exam) {
+        //repository.
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping("/test")

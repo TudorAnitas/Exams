@@ -1,15 +1,14 @@
 package com.baietiiGrei.Exams;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 public class Professor {
-    private @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long professor_id;
     private String name;
     private String email;
 
@@ -21,31 +20,31 @@ public class Professor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Professor professor = (Professor) o;
-        return Objects.equals(id, professor.id) &&
+        return Objects.equals(professor_id, professor.professor_id) &&
                 Objects.equals(name, professor.name) &&
                 Objects.equals(email, professor.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email);
+        return Objects.hash(professor_id, name, email);
     }
 
     @Override
     public String toString() {
         return "Professor{" +
-                "id=" + id +
+                "id=" + professor_id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
 
-    public Long getId() {
-        return id;
+    public Long getProfessor_id() {
+        return professor_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProfessor_id(Long id) {
+        this.professor_id = id;
     }
 
     public String getName() {

@@ -1,6 +1,6 @@
 package com.baietiiGrei.Exams;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProfessorRepository extends CrudRepository<Professor,Long> {
+public interface ProfessorRepository extends JpaRepository<Professor,Long> {
 }
