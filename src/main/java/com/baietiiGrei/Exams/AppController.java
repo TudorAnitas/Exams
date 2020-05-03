@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,7 +27,7 @@ public class AppController {
 
     @GetMapping("/exams")
     public List<Exam> all(@RequestParam(required = false, name = "study_year") Integer studyYear, @RequestParam(required = false, name = "section") String section,
-        @RequestParam(required = false, name = "teacher") String teacher, @RequestParam(required = false, name = "classroom") String classroom) {
+        @RequestParam(required = false, name = "teacher") String teacher, @RequestParam(required = false, name = "classroom") String classroom, @RequestParam(required = false, name = "date") String date) {
 
         List<Exam> exams = repository.findAll();
         if(studyYear != null)
@@ -34,6 +38,15 @@ public class AppController {
             exams = exams.stream().filter(e -> e.getTeacher().equals(teacher)).collect(Collectors.toList());
         if(classroom != null)
             exams = exams.stream().filter(e -> e.getClassroom().equals(classroom)).collect(Collectors.toList());
+        if(date != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            List<Exam> copy = new ArrayList<>(exams);
+            for(Exam el : copy){
+                String dateWithoutTime = sdf.format(el.getDate());
+                if(!dateWithoutTime.equals(date))
+                    exams.remove(el);
+            }
+        }
 
         return exams;
     }

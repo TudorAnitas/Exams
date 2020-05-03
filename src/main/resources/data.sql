@@ -15,6 +15,6 @@ INSERT INTO COURSE(NAME,CREDITS,PROFESSOR_ID) VALUES
 	('Computer Architecture',4,SELECT PROFESSOR_ID FROM PROFESSOR WHERE NAME = 'Elon Musk');
 INSERT INTO EXAM(ACADEMIC_YEAR,STUDY_YEAR,SECTION,CAPACITY,TEACHER,CLASSROOM,DATE,COURSE_ID) VALUES
 	('2019-2020',2,'Computer Science',3,'Teacher 1','Classroom 1', {ts '2012-09-17 18:47:52.69'},SELECT COURSE_ID FROM COURSE WHERE NAME = 'Programming 3'),
-	('2019-2020',1,'Computer Science',23,'Teacher 2','Classroom 2', {ts '2012-09-17 18:47:52.69'},SELECT COURSE_ID FROM COURSE WHERE NAME = 'Logic For Computer Science'),
-	('2019-2020',1,'Computer Science',321,'Teacher 3','Classroom 3', {ts '2012-09-17 18:47:52.69'},SELECT COURSE_ID FROM COURSE WHERE NAME = 'Calculus'),
-	('2019-2020',1,'Computer Science',321,'Teacher 4','Classroom 4', {ts '2012-09-17 18:47:52.69'},SELECT COURSE_ID FROM COURSE WHERE NAME = 'Computer Architecture');
+	('2019-2020',1,'Computer Science',23,'Teacher 2','Classroom 2', {ts '2027-09-17 18:47:52.69'},SELECT COURSE_ID FROM COURSE WHERE NAME = 'Logic For Computer Science'),
+	('2019-2020',1,'Computer Science',321,'Teacher 3','Classroom 3', {ts '2017-09-17 18:47:52.69'},SELECT COURSE_ID FROM COURSE WHERE NAME = 'Calculus'),
+	('2019-2020',1,'Computer Science',321,'Teacher 4','Classroom 4', {ts '2032-09-17 18:47:52.69'},SELECT COURSE_ID FROM COURSE WHERE NAME = 'Computer Architecture');
